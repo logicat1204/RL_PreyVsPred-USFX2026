@@ -1,0 +1,255 @@
+{
+  "agent": "Pred4",
+  "n_states": 18,
+  "n_actions": 5,
+  "action_names": [
+    "UP",
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "STAY"
+  ],
+  "q_table": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -20.520203504175136,
+      -14.790071450731299,
+      -20.207717506582348,
+      -21.02242287639433,
+      -21.470149868763876
+    ],
+    [
+      -14.713742292745861,
+      -22.68952506023621,
+      -19.804061070228457,
+      -22.205331028422513,
+      -20.735107117879906
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -19.668910604177213,
+      -24.64100899872717,
+      -25.240825612985255,
+      -24.75982947981338,
+      -24.663879739855503
+    ],
+    [
+      -20.409358299179914,
+      -19.238468751177486,
+      -21.24937411184224,
+      -16.880866015937922,
+      -21.458781183972214
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -26.229071878608497,
+      -17.720038843008435,
+      -25.01875496175613,
+      -24.61969182937686,
+      -27.117021388506224
+    ],
+    [
+      -23.446923821562496,
+      -21.469813696790837,
+      -16.065949600305895,
+      -21.231623506858107,
+      -22.537057180342764
+    ]
+  ],
+  "state_descriptions": [
+    {
+      "state_idx": 0,
+      "presa": "ninguna",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 1,
+      "presa": "lejana",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 2,
+      "presa": "cercana",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 3,
+      "presa": "ninguna",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 4,
+      "presa": "lejana",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 5,
+      "presa": "cercana",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 6,
+      "presa": "ninguna",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 7,
+      "presa": "lejana",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 8,
+      "presa": "cercana",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja"
+    },
+    {
+      "state_idx": 9,
+      "presa": "ninguna",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 10,
+      "presa": "lejana",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 11,
+      "presa": "cercana",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 12,
+      "presa": "ninguna",
+      "hambre": "hambriento",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 13,
+      "presa": "lejana",
+      "hambre": "hambriento",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 14,
+      "presa": "cercana",
+      "hambre": "hambriento",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 15,
+      "presa": "ninguna",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 16,
+      "presa": "lejana",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja"
+    },
+    {
+      "state_idx": 17,
+      "presa": "cercana",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja"
+    }
+  ],
+  "hyperparameters": {
+    "learning_rate": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.01
+  }
+}

@@ -1,0 +1,777 @@
+{
+  "agent": "Prey0_hijo_5",
+  "n_states": 54,
+  "n_actions": 5,
+  "action_names": [
+    "UP",
+    "DOWN",
+    "LEFT",
+    "RIGHT",
+    "STAY"
+  ],
+  "q_table": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -9.334582201313854,
+      -7.591742110054333,
+      -9.332713759744545,
+      -9.479988687036965,
+      -10.536104953687035
+    ],
+    [
+      -7.342798669730632,
+      -8.007103565519007,
+      -7.214590522447281,
+      -7.959512086859426,
+      -8.068991528317211
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -9.32895836487113,
+      -9.50506633251806,
+      -9.475432907320624,
+      -9.52570010425198,
+      -10.524944649937812
+    ],
+    [
+      -7.444597456874677,
+      -7.469249885158402,
+      -4.781485239972078,
+      -7.3802003335411674,
+      -7.543989670638103
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -10.125079834378404,
+      -10.21784146003767,
+      -7.229629956318269,
+      -10.430840837414568,
+      -10.11620199101865
+    ],
+    [
+      -6.7382857754528995,
+      -5.488785950335784,
+      -6.861418819737269,
+      -6.751030688104343,
+      -6.786642578466932
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -15.39147820974546,
+      -15.345205858586429,
+      -11.127694471969267,
+      -15.207590984779428,
+      -15.511745649190873
+    ],
+    [
+      -12.099228224418637,
+      -13.375453909357528,
+      -13.343293263190212,
+      -13.762372545347494,
+      -13.850948361591445
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -14.821177242747755,
+      -15.939002670787419,
+      -16.28940144170136,
+      -11.704806968630804,
+      -17.338110013815147
+    ],
+    [
+      -14.86191440926006,
+      -14.751330233419907,
+      -10.731458653716015,
+      -14.823034491944181,
+      -15.383623981319968
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -17.436808319265815,
+      -17.514286260757437,
+      -16.78365969708385,
+      -12.367519317538385,
+      -16.881139258510608
+    ],
+    [
+      -15.082974113135366,
+      -15.245864461265885,
+      -16.608330561892377,
+      -12.828054605807788,
+      -15.82804207064041
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -7.595727359866096,
+      -10.180119227997737,
+      -10.399300080904116,
+      -10.728821731004139,
+      -9.786342426019537
+    ],
+    [
+      -6.02803413279842,
+      -6.0304376276979275,
+      -5.178986305683032,
+      -6.067055811032303,
+      -6.148759562584029
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -11.681811693005988,
+      -11.621649354030449,
+      -8.80554225491307,
+      -11.511929535012122,
+      -11.67569180977658
+    ],
+    [
+      -5.351583798774003,
+      -6.13884089065775,
+      -6.0315071834744955,
+      -6.345953266880874,
+      -5.961434795293518
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -5.993846030220495,
+      -11.473637422422803,
+      -11.975045756085779,
+      -11.940734133941232,
+      -12.071878470314205
+    ],
+    [
+      -4.054754549914321,
+      -4.689008598759079,
+      -4.2249281809088925,
+      -4.8219058193955755,
+      -4.198249360761345
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -14.585044189676164,
+      -14.75421059762962,
+      -12.360312719499838,
+      -14.509727698266408,
+      -14.550075957208792
+    ],
+    [
+      -12.64466377215589,
+      -11.780516440889379,
+      -14.37634018095939,
+      -13.551282512522032,
+      -13.972020387166904
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -11.033077912251857,
+      -15.256758975169063,
+      -15.314094581157732,
+      -15.71032724933401,
+      -15.168784988451367
+    ],
+    [
+      -14.679838628015162,
+      -14.609922731167712,
+      -14.71055610923116,
+      -12.026198156545163,
+      -14.67838705914729
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -15.88184991500484,
+      -15.828261572629607,
+      -15.860288066123024,
+      -11.6359823442091,
+      -16.400555769087713
+    ],
+    [
+      -15.682335726285993,
+      -11.186170942878835,
+      -15.579149489874235,
+      -15.5741891564291,
+      -15.921789427977316
+    ]
+  ],
+  "state_descriptions": [
+    {
+      "state_idx": 0,
+      "recurso": "ninguno",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 1,
+      "recurso": "lejano",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 2,
+      "recurso": "cercano",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 3,
+      "recurso": "ninguno",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 4,
+      "recurso": "lejano",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 5,
+      "recurso": "cercano",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 6,
+      "recurso": "ninguno",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 7,
+      "recurso": "lejano",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 8,
+      "recurso": "cercano",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 9,
+      "recurso": "ninguno",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 10,
+      "recurso": "lejano",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 11,
+      "recurso": "cercano",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 12,
+      "recurso": "ninguno",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 13,
+      "recurso": "lejano",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 14,
+      "recurso": "cercano",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 15,
+      "recurso": "ninguno",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 16,
+      "recurso": "lejano",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 17,
+      "recurso": "cercano",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "ninguno"
+    },
+    {
+      "state_idx": 18,
+      "recurso": "ninguno",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 19,
+      "recurso": "lejano",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 20,
+      "recurso": "cercano",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 21,
+      "recurso": "ninguno",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 22,
+      "recurso": "lejano",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 23,
+      "recurso": "cercano",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 24,
+      "recurso": "ninguno",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 25,
+      "recurso": "lejano",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 26,
+      "recurso": "cercano",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 27,
+      "recurso": "ninguno",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 28,
+      "recurso": "lejano",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 29,
+      "recurso": "cercano",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 30,
+      "recurso": "ninguno",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 31,
+      "recurso": "lejano",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 32,
+      "recurso": "cercano",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 33,
+      "recurso": "ninguno",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 34,
+      "recurso": "lejano",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 35,
+      "recurso": "cercano",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "lejano"
+    },
+    {
+      "state_idx": 36,
+      "recurso": "ninguno",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 37,
+      "recurso": "lejano",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 38,
+      "recurso": "cercano",
+      "hambre": "satisfecho",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 39,
+      "recurso": "ninguno",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 40,
+      "recurso": "lejano",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 41,
+      "recurso": "cercano",
+      "hambre": "hambriento",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 42,
+      "recurso": "ninguno",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 43,
+      "recurso": "lejano",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 44,
+      "recurso": "cercano",
+      "hambre": "hambriento_critico",
+      "pareja": "sin_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 45,
+      "recurso": "ninguno",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 46,
+      "recurso": "lejano",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 47,
+      "recurso": "cercano",
+      "hambre": "satisfecho",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 48,
+      "recurso": "ninguno",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 49,
+      "recurso": "lejano",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 50,
+      "recurso": "cercano",
+      "hambre": "hambriento",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 51,
+      "recurso": "ninguno",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 52,
+      "recurso": "lejano",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    },
+    {
+      "state_idx": 53,
+      "recurso": "cercano",
+      "hambre": "hambriento_critico",
+      "pareja": "con_pareja",
+      "depredador": "cercano"
+    }
+  ],
+  "hyperparameters": {
+    "learning_rate": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.01
+  }
+}
