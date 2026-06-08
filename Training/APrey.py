@@ -2,7 +2,7 @@ class Prey:
     def __init__(self, name):
         self.name = name
         self.hambre = 100
-        self.estado = {"buscar_recurso": 1, "buscar_pareja": 2, "huir": 3}
+        self.estado = {"buscar_recurso": 1, "hambre": 2, "buscar_pareja": 3, "pred_cercano": 4}
         self.estado_actual = self.estado["buscar_recurso"]
         
     def __str__(self):
@@ -69,7 +69,7 @@ def mover(self, environment, accion):
         pass
 
 
-    
+
     
     def comer(self, environment, objetivo):
         # Implementar lógica de alimentación para la presa
@@ -92,8 +92,11 @@ def mover(self, environment, accion):
             self.mover(environment, "busca_comida")
         elif self.estado_actual == self.estado["buscar_pareja"]:
             self.mover(environment, "busca_pareja")
-        elif self.estado_actual == self.estado["huir"]:
+        elif self.hambre >= 50 and self.estado_actual == self.estado["buscar_pareja"]:
+            self.mover(environment, "busca_pareja")
+        elif self.estado_actual == self.estado["pred_cercano"]:
             self.mover(environment, "huye")
+        
 
     
 Prey1 = Prey("Prey1")

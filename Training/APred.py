@@ -2,7 +2,7 @@ class Pred:
     def __init__(self, name):
         self.name = name
         self.hambre = 100
-        self.estado = {"buscar_presa": 1, "buscar_pareja": 2}
+        self.estado = {"buscar_presa": 1, "hambre": 2, "buscar_pareja": 3}
         self.estado_actual = self.estado["buscar_presa"]
     def __str__(self):
         return self.name + "(" + str(self.hambre) + ")"
