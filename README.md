@@ -15,9 +15,9 @@ Este proyecto demuestra cómo el **Aprendizaje por Refuerzo (Reinforcement Learn
 | :--- | :--- |
 | **Universidad** | Universidad Mayor, Real y Pontificia de San Francisco Xavier de Chuquisaca (**USFX**) |
 | **Facultad** | Facultad de Tecnología |
-| **Carrera** | Ingeniería de Sistemas / Ciencias de la Computación |
-| **Materia** | Inteligencia Artificial II (SIS420) |
-| **Docente** | Ing. Walter Pacheco Lora |
+| **Carrera** | Ingeniería en Ciencias de la Computación |
+| **Materia** | Inteligencia Artificial I (SIS420) |
+| **Docente** | Ing. Carlos Walter Pacheco Lora |
 | **Estudiante** | Alvaro David Arancibia Estrada |
 | **Semestre** | 01/2026 |
 
