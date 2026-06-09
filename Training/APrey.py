@@ -140,15 +140,15 @@ class Prey(QAgent):
 
         if before_resource is not None and after_resource is not None and self.hambre <= 70:
             if after_resource < before_resource:
-                reward += 2
+                reward += 3
             elif after_resource > before_resource:
-                reward -= 1
+                reward -= 2
 
         if before_predator is not None and after_predator is not None and before_predator <= 5:
             if after_predator > before_predator:
-                reward += 3
+                reward += 5
             elif after_predator < before_predator:
-                reward -= 4
+                reward -= 6
 
         if action_idx == self.ACTIONS.index("STAY"):
             reward -= 2
@@ -165,10 +165,11 @@ class Prey(QAgent):
         if self.repro_cooldown > 0:
             self.repro_cooldown -= 1
 
+        reward += 0.3
         return reward
 
     def try_reproduce(self, env, all_preys, max_population=None):
-        if not self.alive or self.hambre <= 70 or self.repro_cooldown > 0:
+        if not self.alive or self.hambre <= 60 or self.repro_cooldown > 0:
             return []
         if max_population is not None and len(all_preys) >= max_population:
             return []
@@ -181,7 +182,7 @@ class Prey(QAgent):
         if not has_mate:
             return []
 
-        n = random.randint(1, 3)
+        n = random.randint(2, 4)
         if max_population is not None:
             n = min(n, max_population - len(all_preys))
         cells = env.nearest_empty(self.pos, n)
@@ -196,7 +197,7 @@ class Prey(QAgent):
             env.set_cell(pos, Environment.PREY)
             offspring.append(child)
 
-        self.hambre = max(0, self.hambre - 20)
+        self.hambre = max(0, self.hambre - 15)
         self.repro_cooldown = 10
         return offspring
 

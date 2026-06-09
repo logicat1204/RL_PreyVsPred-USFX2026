@@ -14,6 +14,6 @@ ARecurso::ARecurso()
     {
         MeshComp->SetStaticMesh(MeshAsset.Object);
     }
-    MeshComp->SetWorldScale3D(FVector(0.3f));
+    MeshComp->SetWorldScale3D(FVector(0.1f));
     MeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }

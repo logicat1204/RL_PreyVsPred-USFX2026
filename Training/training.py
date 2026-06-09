@@ -7,14 +7,16 @@ from APrey import Prey
 from APred import Predator
 
 GRID_ROWS, GRID_COLS = 20, 20
-N_INITIAL_PREY = 5
-N_INITIAL_PRED = 5
-N_RESOURCES = 15
-MAX_RESOURCES = 20
+N_INITIAL_PREY = 8
+N_INITIAL_PRED = 3
+N_RESOURCES = 20
+MAX_RESOURCES = 25
 MAX_PREY_POP = 80
 MAX_PRED_POP = 60
 N_EPISODES = 1000
 MAX_STEPS = 200
+EXTRA_EXTINCTION_STEPS = 30
+PREY_EXTINCTION_PENALTY = -100
 
 
 def setup_episode(env, n_prey, n_pred, n_res):
@@ -106,8 +108,8 @@ def render_step(env, all_preys, all_preds, actions_log, episode, step):
 def train(render_every=0):
     env = Environment(GRID_ROWS, GRID_COLS)
 
-    _ = Prey("_seed", lr=0.1, gamma=0.9, epsilon=1.0)
-    _ = Predator("_seed", lr=0.1, gamma=0.9, epsilon=1.0)
+    _ = Prey("_seed", lr=0.3, gamma=0.9, epsilon=1.0)
+    _ = Predator("_seed", lr=0.05, gamma=0.9, epsilon=1.0)
 
     prey_rewards_log = []
     pred_rewards_log = []
@@ -117,15 +119,18 @@ def train(render_every=0):
 
     prey_eps = 1.0
     pred_eps = 1.0
-    EPS_MIN = 0.1
-    EPS_DECAY = 0.9995
+    PREY_EPS_MIN = 0.15
+    PRED_EPS_MIN = 0.01
+    PREY_EPS_DECAY = 0.9998
+    PRED_EPS_DECAY = 0.999
 
     do_render = render_every > 0
 
     print(f"Grid: {GRID_ROWS}x{GRID_COLS}")
-    print(f"Inicial: {N_INITIAL_PREY} presas, {N_INITIAL_PRED} depredadores, {N_RESOURCES} recursos")
+    print(f"Inicial: {N_INITIAL_PREY} presas, {N_INITIAL_PRED} depredadores, {N_RESOURCES} recursos (max {MAX_RESOURCES})")
     print(f"Presa: {Prey.N_STATES} estados | Depredador: {Predator.N_STATES} estados")
-    print(f"Episodios: {N_EPISODES} | Pasos max: {MAX_STEPS}")
+    print(f"Episodios: {N_EPISODES} | Pasos max: {MAX_STEPS} | Ext pasos extra: {EXTRA_EXTINCTION_STEPS}")
+    print(f"Prey lr:0.3 eps:{PREY_EPS_MIN}-{PREY_EPS_DECAY} | Pred lr:0.05 eps:{PRED_EPS_MIN}-{PRED_EPS_DECAY}")
     if do_render:
         print(f"Render cada {render_every} episodios (activo)")
     print("-" * 80)
@@ -149,12 +154,18 @@ def train(render_every=0):
         if render_this:
             render_step(env, all_preys, all_preds, [], ep + 1, 0)
 
+        extinction_step = None
+
         for step in range(MAX_STEPS):
             alive_preys = collect_alive(all_preys)
             alive_preds = collect_alive(all_preds)
+
             if not alive_preys or not alive_preds:
-                n_steps = step
-                break
+                if extinction_step is None:
+                    extinction_step = step
+                elif step >= extinction_step + EXTRA_EXTINCTION_STEPS:
+                    n_steps = step
+                    break
 
             prey_turns = [(p, p.get_state(env)) for p in alive_preys]
             pred_turns = [(d, d.get_state(env)) for d in alive_preds]
@@ -210,6 +221,8 @@ def train(render_every=0):
                     total_r_prey += death_reward
 
             for d, s, a, r in pred_data:
+                if extinction_step is not None and step == extinction_step and not alive_preys:
+                    r += PREY_EXTINCTION_PENALTY
                 if d.alive:
                     ns = d.get_state(env)
                     d.update(s, a, r, ns, done=False)
@@ -218,7 +231,7 @@ def train(render_every=0):
                     d.update(s, a, r, 0, done=True)
                     total_r_pred += r
 
-            if random.random() < 0.3:
+            if random.random() < 0.4:
                 env.spawn_resource(MAX_RESOURCES)
 
             n_steps = step + 1
@@ -231,8 +244,8 @@ def train(render_every=0):
                 render_step(env, all_preys, all_preds, actions_log, ep + 1, n_steps)
             input(f"\n  Episodio {ep+1} finalizado ({n_steps} pasos). Presiona Enter para continuar...")
 
-        prey_eps = max(EPS_MIN, prey_eps * EPS_DECAY)
-        pred_eps = max(EPS_MIN, pred_eps * EPS_DECAY)
+        prey_eps = max(PREY_EPS_MIN, prey_eps * PREY_EPS_DECAY)
+        pred_eps = max(PRED_EPS_MIN, pred_eps * PRED_EPS_DECAY)
 
         alive_preys = collect_alive(all_preys)
         alive_preds = collect_alive(all_preds)
@@ -250,11 +263,12 @@ def train(render_every=0):
             pct_p = (avg_prey_pop / pop_total * 100) if pop_total else 0
             pct_d = (avg_pred_pop / pop_total * 100) if pop_total else 0
 
+            balance = 1 - abs(pct_p - 60) / 100
             print(f"Ep {ep+1:>4}/{N_EPISODES}  "
                   f"Presa R:{avg_rp:>+6.1f}  Depredador R:{avg_rd:>+6.1f}  "
                   f"Poblacion: {pct_p:>5.1f}% / {pct_d:>5.1f}%  "
                   f"({int(avg_prey_pop)}P / {int(avg_pred_pop)}D)  "
-                  f"eps:{prey_eps:.3f}/{pred_eps:.3f}")
+                  f"Bal:{balance:.2f}  eps:{prey_eps:.3f}/{pred_eps:.3f}")
             sys.stdout.flush()
 
     # --- final ---
