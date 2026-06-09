@@ -9,7 +9,7 @@ ARecurso::ARecurso()
     MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
     RootComponent = MeshComp;
 
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Game/LevelPrototyping/Meshes/SM_Cube.SM_Cube"));
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Game/Fab/Small_garden_hay/small_garden_hay/StaticMeshes/small_garden_hay.small_garden_hay"));
     if (MeshAsset.Succeeded())
     {
         MeshComp->SetStaticMesh(MeshAsset.Object);

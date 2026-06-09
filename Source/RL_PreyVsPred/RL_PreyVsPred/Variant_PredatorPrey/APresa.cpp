@@ -14,9 +14,9 @@ TArray<FIntPoint> APresa::DirOffsets = {
     FIntPoint( 0,  0)  // STAY
 };
 
-namespace
-{
-int32 DirectionTo(const FIntPoint& Src, const FIntPoint& Dst)
+
+
+static int32 DirectionTo(const FIntPoint& Src, const FIntPoint& Dst)
 {
     const int32 Dx = Dst.X - Src.X;
     const int32 Dy = Dst.Y - Src.Y;
@@ -45,7 +45,7 @@ void NearestInfo(AEntorno* Entorno, const FIntPoint& Src, const TArray<FIntPoint
         }
     }
 }
-}
+
 
 APresa::APresa()
 {
