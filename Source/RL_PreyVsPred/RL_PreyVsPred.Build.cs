@@ -18,7 +18,9 @@ public class RL_PreyVsPred : ModuleRules
 			"StateTreeModule",
 			"GameplayStateTreeModule",
 			"UMG",
-			"Slate"
+			"Slate",
+			"Json",
+			"JsonUtilities"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
@@ -37,7 +39,8 @@ public class RL_PreyVsPred : ModuleRules
 			"RL_PreyVsPred/Variant_SideScrolling/AI",
 			"RL_PreyVsPred/Variant_SideScrolling/Gameplay",
 			"RL_PreyVsPred/Variant_SideScrolling/Interfaces",
-			"RL_PreyVsPred/Variant_SideScrolling/UI"
+			"RL_PreyVsPred/Variant_SideScrolling/UI",
+			"RL_PreyVsPred/Variant_PredatorPrey"
 		});
 
 		// Uncomment if you are using Slate UI

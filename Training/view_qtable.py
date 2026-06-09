@@ -22,10 +22,15 @@ def print_qtable(data):
     print(header)
     print("-" * len(header))
 
+    visited_states = data.get("visited_states")
+    visible_states = set(visited_states) if visited_states is not None else None
+
     for s in range(n_states):
         row_vals = q_table[s]
         # Skip rows where all values are 0.0 (unvisited states) to reduce noise
-        if all(v == 0.0 for v in row_vals):
+        if visible_states is not None and s not in visible_states:
+            continue
+        if visible_states is None and all(v == 0.0 for v in row_vals):
             continue
         line = f"{s:<8}" + "".join(f"{v:>12.3f}" for v in row_vals)
         print(line)
@@ -37,7 +42,7 @@ def print_qtable(data):
             else:
                 print(f"{'':>8}{desc}")
 
-    visited = sum(1 for row in q_table if any(v != 0.0 for v in row))
+    visited = len(visited_states) if visited_states is not None else sum(1 for row in q_table if any(v != 0.0 for v in row))
     zero = n_states - visited
     print(f"\n  Estados visitados: {visited} / {n_states}  (no visitados: {zero})")
     print()
@@ -55,6 +60,9 @@ def print_compact(data):
     print(f"{'='*100}\n")
 
     best_actions = []
+    visited_states = data.get("visited_states")
+    visible_states = set(visited_states) if visited_states is not None else None
+
     for s in range(n_states):
         best = max(range(len(actions)), key=lambda a: q_table[s][a])
         best_val = q_table[s][best]
@@ -72,7 +80,9 @@ def print_compact(data):
 
     for s in range(n_states):
         row_vals = q_table[s]
-        if all(v == 0.0 for v in row_vals):
+        if visible_states is not None and s not in visible_states:
+            continue
+        if visible_states is None and all(v == 0.0 for v in row_vals):
             continue
 
         desc = descriptions[s] if descriptions and s < len(descriptions) else {}

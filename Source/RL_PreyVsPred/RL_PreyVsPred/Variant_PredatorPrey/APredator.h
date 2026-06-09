@@ -1,0 +1,62 @@
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "APredator.generated.h"
+
+class AEntorno;
+
+UCLASS()
+class APredator : public AActor
+{
+    GENERATED_BODY()
+
+public:
+    APredator();
+
+    UPROPERTY(VisibleAnywhere, Category = "Mesh")
+    UStaticMeshComponent* MeshComp;
+
+    UPROPERTY(VisibleAnywhere, Category = "State")
+    FIntPoint GridPos;
+
+    UPROPERTY(EditAnywhere, Category = "State")
+    int32 Hambre = 100;
+
+    UPROPERTY(EditAnywhere, Category = "State")
+    int32 MaxHambre = 100;
+
+    UPROPERTY(VisibleAnywhere, Category = "State")
+    bool bAlive = true;
+
+    UPROPERTY(VisibleAnywhere, Category = "State")
+    int32 ReproCooldown = 0;
+
+    UPROPERTY(VisibleAnywhere, Category = "State")
+    int32 StepsHambreCero = 0;
+
+    UPROPERTY(EditAnywhere, Category = "QTable")
+    FString QTableFilePath = TEXT("Training/Pred_QTable.json");
+
+    void LoadQTable();
+    int32 GetState(AEntorno* Entorno);
+    void ApplyAction(int32 ActionIdx, AEntorno* Entorno);
+    int32 ChooseAction(int32 StateIdx);
+
+    TArray<TArray<float>> QTable;
+    int32 NumStates = 90;
+    int32 NumActions = 5;
+
+    static const int32 PRES_LEVELS = 3;
+    static const int32 PREDIR_LEVELS = 5;
+    static const int32 HB_LEVELS = 3;
+    static const int32 RR_LEVELS = 2;
+
+    static TArray<FIntPoint> DirOffsets;
+
+protected:
+    virtual void BeginPlay() override;
+
+private:
+    bool bQTableLoaded = false;
+};

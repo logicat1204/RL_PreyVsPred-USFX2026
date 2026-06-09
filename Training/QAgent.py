@@ -19,7 +19,9 @@ class QAgent:
     def choose_action(self, state):
         if random.random() < self.epsilon:
             return random.randint(0, self.n_actions - 1)
-        return int(np.argmax(self.q_table[state]))
+        best_val = np.max(self.q_table[state])
+        best_actions = np.where(self.q_table[state] == best_val)[0]
+        return int(np.random.choice(best_actions))
 
     def update(self, state, action, reward, next_state, done):
         future = 0 if done else np.max(self.q_table[next_state])
@@ -30,7 +32,7 @@ class QAgent:
     def decay_epsilon(self):
         self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
 
-    def export_q_table(self, filename, state_decoder=None):
+    def export_q_table(self, filename, state_decoder=None, visited_states=None):
         state_descriptions = None
         if state_decoder:
             state_descriptions = []
@@ -44,6 +46,7 @@ class QAgent:
             "action_names": self.ACTIONS if hasattr(self, 'ACTIONS') else [f"a{i}" for i in range(self.n_actions)],
             "q_table": self.q_table.tolist(),
             "state_descriptions": state_descriptions,
+            "visited_states": sorted(visited_states) if visited_states is not None else None,
             "hyperparameters": {
                 "learning_rate": self.lr,
                 "gamma": self.gamma,

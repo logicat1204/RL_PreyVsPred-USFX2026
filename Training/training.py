@@ -11,8 +11,10 @@ N_INITIAL_PREY = 5
 N_INITIAL_PRED = 5
 N_RESOURCES = 15
 MAX_RESOURCES = 20
-N_EPISODES = 8000
-MAX_STEPS = 100
+MAX_PREY_POP = 80
+MAX_PRED_POP = 60
+N_EPISODES = 6000
+MAX_STEPS = 200
 
 
 def setup_episode(env, n_prey, n_pred, n_res):
@@ -110,11 +112,13 @@ def train(render_every=0):
     prey_rewards_log = []
     pred_rewards_log = []
     pop_log = []
+    visited_prey_states = set()
+    visited_pred_states = set()
 
     prey_eps = 1.0
     pred_eps = 1.0
-    EPS_MIN = 0.01
-    EPS_DECAY = 0.997
+    EPS_MIN = 0.1
+    EPS_DECAY = 0.9995
 
     do_render = render_every > 0
 
@@ -152,21 +156,25 @@ def train(render_every=0):
                 n_steps = step
                 break
 
-            prey_states = [p.get_state(env) for p in alive_preys]
-            pred_states = [d.get_state(env) for d in alive_preds]
+            prey_turns = [(p, p.get_state(env)) for p in alive_preys]
+            pred_turns = [(d, d.get_state(env)) for d in alive_preds]
+            prey_states = [s for _, s in prey_turns]
+            pred_states = [s for _, s in pred_turns]
+            visited_prey_states.update(prey_states)
+            visited_pred_states.update(pred_states)
 
-            random.shuffle(alive_preys)
+            random.shuffle(prey_turns)
             prey_data = []
             actions_log.clear()
-            for p, s in zip(alive_preys, prey_states):
+            for p, s in prey_turns:
                 a = p.choose_action(s)
                 r = p.apply_action(env, a)
                 prey_data.append((p, s, a, r))
                 actions_log.append((p.name, Prey.ACTIONS[a], 'P'))
 
-            random.shuffle(alive_preds)
+            random.shuffle(pred_turns)
             pred_data = []
-            for d, s in zip(alive_preds, pred_states):
+            for d, s in pred_turns:
                 a = d.choose_action(s)
                 r = d.apply_action(env, a)
                 pred_data.append((d, s, a, r))
@@ -179,14 +187,14 @@ def train(render_every=0):
 
             for p in list(all_preys):
                 if p.alive:
-                    offspring = p.try_reproduce(env, all_preys)
+                    offspring = p.try_reproduce(env, all_preys, MAX_PREY_POP)
                     for c in offspring:
                         c.epsilon = prey_eps
                     all_preys.extend(offspring)
 
             for d in list(all_preds):
                 if d.alive:
-                    offspring = d.try_reproduce(env, all_preds)
+                    offspring = d.try_reproduce(env, all_preds, MAX_PRED_POP)
                     for c in offspring:
                         c.epsilon = pred_eps
                     all_preds.extend(offspring)
@@ -197,8 +205,9 @@ def train(render_every=0):
                     p.update(s, a, r, ns, done=False)
                     total_r_prey += r
                 else:
-                    p.update(s, a, r, 0, done=True)
-                    total_r_prey += r - 50
+                    death_reward = r - 50
+                    p.update(s, a, death_reward, 0, done=True)
+                    total_r_prey += death_reward
 
             for d, s, a, r in pred_data:
                 if d.alive:
@@ -246,6 +255,7 @@ def train(render_every=0):
                   f"Poblacion: {pct_p:>5.1f}% / {pct_d:>5.1f}%  "
                   f"({int(avg_prey_pop)}P / {int(avg_pred_pop)}D)  "
                   f"eps:{prey_eps:.3f}/{pred_eps:.3f}")
+            sys.stdout.flush()
 
     # --- final ---
     print("-" * 80)
@@ -253,23 +263,30 @@ def train(render_every=0):
     print(f"Poblacion final ep: {pop_log[-1][0]} presas, {pop_log[-1][1]} depredadores")
     print(f"Max presas: {max(p[0] for p in pop_log)} | Max depredadores: {max(p[1] for p in pop_log)}")
 
+    p_covered = len(visited_prey_states)
+    p_total = Prey.N_STATES
+    d_covered = len(visited_pred_states)
+    d_total = Predator.N_STATES
+    print(f"Estados Presa: {p_covered}/{p_total} ({100*p_covered/p_total:.0f}%)")
+    print(f"Estados Depredador: {d_covered}/{d_total} ({100*d_covered/d_total:.0f}%)")
+
     prey_file = Prey._seed if hasattr(Prey, '_seed') else all_preys[0]
     pred_file = Predator._seed if hasattr(Predator, '_seed') else all_preds[0]
 
     # export using any instance (all share same q_table)
     for p in all_preys:
         if p.alive:
-            p.export_q_table("Prey_QTable.json", Prey.decode_state)
+            p.export_q_table("Prey_QTable.json", Prey.decode_state, visited_prey_states)
             break
     else:
-        all_preys[0].export_q_table("Prey_QTable.json", Prey.decode_state)
+        all_preys[0].export_q_table("Prey_QTable.json", Prey.decode_state, visited_prey_states)
 
     for d in all_preds:
         if d.alive:
-            d.export_q_table("Pred_QTable.json", Predator.decode_state)
+            d.export_q_table("Pred_QTable.json", Predator.decode_state, visited_pred_states)
             break
     else:
-        all_preds[0].export_q_table("Pred_QTable.json", Predator.decode_state)
+        all_preds[0].export_q_table("Pred_QTable.json", Predator.decode_state, visited_pred_states)
 
     print("Archivos: Prey_QTable.json, Pred_QTable.json")
 

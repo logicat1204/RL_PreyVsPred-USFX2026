@@ -1,0 +1,67 @@
+Como implementar machine learning - aprendizaje por refuerzo en Unreal engine 5.
+Quiero implementar una simulacion donde tenga dos agentes un depredador y una presa.
+Ambos seran premiados, el depredador seria premiado cuando case a una presa y la presa por su tiempo de supervivencia, tambien sera necesario de algunos recursos para que puedan sobrevivir y reproducirse, para que un depredador pueda reproducirse le hace falta comer mientras que para que una presa pueda reproducrise tambien, para lo cual los recursos que aparecen seran aleatorios(los recursos son consumidos por presas), es por ello que sera necesario implementar una clase padre llamada Organismo que heredara de estas la capacidad de moverse solamente a sus clases hijas depredador y presa. Tambien crearemos una clase Recurso la cual podra ser comida por las presas cuando estas se acercan y cuando se acercan recompensar a la presa.
+Por lo tanto cual seria la estrutura para este proyecto de Machine Learning?
+
+Agentes encargados del aprendizaje:
+
+Clase Depredador.- 
+Descripcion: Puede comer a las presas y buscar presas a su alrededor debe aprender a buscar presas y moverse hacia ellas para comer.
+Acciones: 
+	- Mover
+	- Buscar
+	- Cazar
+
+Clase Presa.- 
+Descripcion: Puede consumir recursos y busca los recursos a su alrededor, adicionalmente puede huir de los depredadores y buscara 
+recursos unicamente si esta a una distancia segura de los depredadores.
+	- Mover
+	- Buscar
+	- Huir
+	- Consumir
+
+Clase Recurso.- 
+Descripcion: Se puede generar aleatoriamente por el mapa en segmentos y ademas puede tener un tiempo de aparicion o regeneracion.
+	- Regenerar
+
+Clase Dios.- 
+Descripcion: Puede monitorear la poblacion de depredadores y presas, en base a ello puede hacer que se generen mas o menos recursos, buscando equilibrar de la mejor manera posible su ecosistema generando mayor o menor cantidad de recursos, sin que haya dominio claro por parte de alguna especie.
+	- Monitorear
+	- Generar recursos
+	- Crear Terreno
+
+Idea de proyecto Madre Naturaleza con Machine Learning que aprenda a como hacer que sus entidades sobrevivan o balancear un ecosistema.
+Plantas(reforestacion o ampliacion), Seres vivos (Presa y Depredador), Hongos, Animales de mar, humanos.
+
+Agentes: 
+	Depredador
+	Presa
+Acciones:
+	Depredador.- Moverse, Cazar.
+	
+Entorno:
+	Naturaleza, espacio limitado de UE.
+Recompensa:
+	Tiempo de supervivencia
+	Depredador.- Moverse cerca de una presa, Perseguir y cazar a una presa, reproducirse (3 recompensas)
+	Presa.- Moverse cerca de recursos, huir y lograr huir el mayor tiempo posible, reproducirse.
+Funcion de valor:
+	Cada tipo de accion Debera tener una function valor, para cada recompensa? o para cada agente?
+
+
+
+
+Diapositivas
+
+
+Fase 1 
+Diseño de algoritmo ML
+Aprendizaje por refuerzo.
+Aprendizaje de agentes en entorno 
+Existiran dos agentes que competirán por sobrevivir mas tiempo que el otro.
+Principalmente una presa y un depredador cada uno tendrá una característic y es que la presa come recursos que se regeneran en el ambiente y el depredador consume a la presa.
+El objetivo de este proyecto es aplicar aprendizaje por refuerzo para modelar comportamientos a Bots o IA que decide comportamientos a tomar sin tener que programar mas que la logica y acciones que realizan los agentes, sin embargo este proyecto ya se ha hecho mucho, en este caso para agregar complejidad al proyecto agregare un tercer agente llamado Dios o MadreTierra que debe aprender a mantener a su población de manera equilibrada de modo que en cada episodio toma las metricas que hubo como el porcentaje de población y en base a ello puede regenerar o no los recursos con un metodo Lluvia() el cual le permite vovler a generar recursos para las presas debe aprender con una Q-Table a saber cuando generar Lluvia que generara los recursos en el entorno para ello se fija constantemente en la población de presas de modo que su Q-Table contempla los estados llover o no llover que estan dependientes de si la población de presas es mucho mayor que de las presas o mucho menor y en base a ello genera la lluvia, su recompensa o castigo se da en condicion de que su población se mantenga equilibrada o no.
+
+
+
+	
