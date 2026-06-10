@@ -51,7 +51,7 @@ void NearestInfo(AEntorno* Entorno, const FIntPoint& Src, const TArray<FIntPoint
 
 APredator::APredator()
 {
-    PrimaryActorTick.bCanEverTick = false;
+    PrimaryActorTick.bCanEverTick = true;
 
     MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
     RootComponent = MeshComp;
@@ -68,6 +68,8 @@ APredator::APredator()
 void APredator::BeginPlay()
 {
     Super::BeginPlay();
+    TargetWorldLocation = GetActorLocation();
+    TargetRotation = GetActorRotation();
     LoadQTable();
 }
 
@@ -197,10 +199,31 @@ int32 APredator::ChooseAction(int32 StateIdx)
     return BestActions[FMath::RandRange(0, BestActions.Num() - 1)];
 }
 
+void APredator::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+
+    if (bMoving)
+    {
+        FVector NewLoc = FMath::VInterpTo(GetActorLocation(), TargetWorldLocation, DeltaTime, PositionInterpSpeed);
+        SetActorLocation(NewLoc);
+        if (NewLoc.Equals(TargetWorldLocation, 1.0f))
+        {
+            bMoving = false;
+        }
+    }
+
+    FQuat CurrentQuat = GetActorQuat();
+    FQuat TargetQuat = TargetRotation.Quaternion();
+    FQuat NewQuat = FQuat::Slerp(CurrentQuat, TargetQuat, FMath::Clamp(RotationInterpSpeed * DeltaTime, 0.0f, 1.0f));
+    SetActorRotation(NewQuat);
+}
+
 void APredator::ApplyAction(int32 ActionIdx, AEntorno* Entorno)
 {
     if (!Entorno || !bAlive) return;
 
+    FIntPoint OldPos = GridPos;
     FIntPoint NewPos = GridPos + DirOffsets[ActionIdx];
 
     if (Entorno->IsValidPos(NewPos))
@@ -222,6 +245,14 @@ void APredator::ApplyAction(int32 ActionIdx, AEntorno* Entorno)
             Entorno->MovePredator(this, NewPos);
             Hambre = FMath::Min(MaxHambre, Hambre + 60);
         }
+    }
+
+    if (GridPos != OldPos)
+    {
+        TargetWorldLocation = Entorno->GridToWorld(GridPos);
+        bMoving = true;
+        FVector Dir(GridPos.X - OldPos.X, GridPos.Y - OldPos.Y, 0.0f);
+        TargetRotation = Dir.Rotation() + RotationOffset;
     }
 
     Hambre = FMath::Max(0, Hambre - 1);

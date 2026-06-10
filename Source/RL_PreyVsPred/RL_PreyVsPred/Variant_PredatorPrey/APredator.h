@@ -43,6 +43,21 @@ public:
     void ApplyAction(int32 ActionIdx, AEntorno* Entorno);
     int32 ChooseAction(int32 StateIdx);
 
+    virtual void Tick(float DeltaTime) override;
+
+    UPROPERTY(EditAnywhere, Category = "Movement")
+    float PositionInterpSpeed = 6.0f;
+
+    UPROPERTY(EditAnywhere, Category = "Movement")
+    float RotationInterpSpeed = 8.0f;
+
+    UPROPERTY(EditAnywhere, Category = "Movement")
+    FRotator RotationOffset = FRotator(0.0f, -90.0f, 0.0f);
+
+    FVector TargetWorldLocation;
+    FRotator TargetRotation;
+    bool bMoving = false;
+
     TArray<TArray<float>> QTable;
     int32 NumStates = 90;
     int32 NumActions = 5;

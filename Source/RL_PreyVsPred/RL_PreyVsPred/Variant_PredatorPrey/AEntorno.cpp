@@ -308,8 +308,6 @@ void AEntorno::MovePrey(APresa* Prey, const FIntPoint& NewPos)
     if (Prey && IsValidPos(NewPos))
     {
         Prey->GridPos = NewPos;
-        FVector WorldPos = GridToWorld(NewPos);
-        Prey->SetActorLocation(WorldPos);
     }
 }
 
@@ -318,8 +316,6 @@ void AEntorno::MovePredator(APredator* Pred, const FIntPoint& NewPos)
     if (Pred && IsValidPos(NewPos))
     {
         Pred->GridPos = NewPos;
-        FVector WorldPos = GridToWorld(NewPos);
-        Pred->SetActorLocation(WorldPos);
     }
 }
 
