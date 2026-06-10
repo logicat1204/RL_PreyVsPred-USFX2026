@@ -224,9 +224,21 @@ void APresa::Tick(float DeltaTime)
     if (bMoving)
     {
         FVector NewLoc = FMath::VInterpTo(GetActorLocation(), TargetWorldLocation, DeltaTime, PositionInterpSpeed);
-        SetActorLocation(NewLoc);
-        if (NewLoc.Equals(TargetWorldLocation, 1.0f))
+
+        float TotalDist = FVector::Dist(MoveStartLocation, TargetWorldLocation);
+        float Travelled = FVector::Dist(MoveStartLocation, NewLoc);
+        float Progress = TotalDist > 0.0f ? FMath::Clamp(Travelled / TotalDist, 0.0f, 1.0f) : 1.0f;
+
+        if (bDoHop)
         {
+            NewLoc.Z += FMath::Sin(Progress * PI) * HopHeight;
+        }
+
+        SetActorLocation(NewLoc);
+        if (Progress >= 1.0f)
+        {
+            NewLoc.Z = TargetWorldLocation.Z;
+            SetActorLocation(NewLoc);
             bMoving = false;
         }
     }
@@ -265,8 +277,10 @@ void APresa::ApplyAction(int32 ActionIdx, AEntorno* Entorno)
 
     if (GridPos != OldPos)
     {
+        MoveStartLocation = GetActorLocation();
         TargetWorldLocation = Entorno->GridToWorld(GridPos);
         bMoving = true;
+        bDoHop = FMath::FRand() < HopProbability;
         FVector Dir(GridPos.X - OldPos.X, GridPos.Y - OldPos.Y, 0.0f);
         TargetRotation = Dir.Rotation();
     }

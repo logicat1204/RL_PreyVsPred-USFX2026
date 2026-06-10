@@ -51,9 +51,17 @@ public:
     UPROPERTY(EditAnywhere, Category = "Movement")
     float RotationInterpSpeed = 8.0f;
 
+    UPROPERTY(EditAnywhere, Category = "Movement")
+    float HopHeight = 30.0f;
+
+    UPROPERTY(EditAnywhere, Category = "Movement", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+    float HopProbability = 0.25f;
+
     FVector TargetWorldLocation;
+    FVector MoveStartLocation;
     FRotator TargetRotation;
     bool bMoving = false;
+    bool bDoHop = false;
 
     TArray<TArray<float>> QTable;
     int32 NumStates = 1350;

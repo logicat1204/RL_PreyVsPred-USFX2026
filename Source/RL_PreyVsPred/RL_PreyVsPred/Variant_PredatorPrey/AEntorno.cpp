@@ -121,7 +121,7 @@ void AEntorno::InitializeSimulation()
         FIntPoint RPos = AllFree[Offset + i];
         ResourcePositions.Add(RPos);
 
-        ARecurso* Res = World->SpawnActor<ARecurso>(GridToWorld(RPos), FRotator::ZeroRotator);
+        ARecurso* Res = World->SpawnActor<ARecurso>(GridToWorld(RPos), FRotator(10.0f, 0.0f, 60.0f));
         if (Res)
         {
             Res->GridPos = RPos;
@@ -349,7 +349,7 @@ void AEntorno::SpawnResource()
         UWorld* World = GetWorld();
         if (World)
         {
-            ARecurso* Res = World->SpawnActor<ARecurso>(GridToWorld(RPos), FRotator::ZeroRotator);
+            ARecurso* Res = World->SpawnActor<ARecurso>(GridToWorld(RPos), FRotator(10.0f, 0.0f, 60.0f));
             if (Res)
             {
                 Res->GridPos = RPos;
