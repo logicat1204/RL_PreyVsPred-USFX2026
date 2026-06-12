@@ -63,5 +63,62 @@ Principalmente una presa y un depredador cada uno tendrá una característic y e
 El objetivo de este proyecto es aplicar aprendizaje por refuerzo para modelar comportamientos a Bots o IA que decide comportamientos a tomar sin tener que programar mas que la logica y acciones que realizan los agentes, sin embargo este proyecto ya se ha hecho mucho, en este caso para agregar complejidad al proyecto agregare un tercer agente llamado Dios o MadreTierra que debe aprender a mantener a su población de manera equilibrada de modo que en cada episodio toma las metricas que hubo como el porcentaje de población y en base a ello puede regenerar o no los recursos con un metodo Lluvia() el cual le permite vovler a generar recursos para las presas debe aprender con una Q-Table a saber cuando generar Lluvia que generara los recursos en el entorno para ello se fija constantemente en la población de presas de modo que su Q-Table contempla los estados llover o no llover que estan dependientes de si la población de presas es mucho mayor que de las presas o mucho menor y en base a ello genera la lluvia, su recompensa o castigo se da en condicion de que su población se mantenga equilibrada o no.
 
 
+Documentacion GitHub
+
+Estudiante: Alvaro David Arancibia Estrada
+Materia: SIS420
+Docente: Ing. Walter Pacheco Lora
+USFX
+Semestre: 01/2026
+introduccion
+El proyecto consiste en demostrar como el aprendizaje por refuerzo puede dar vida a IA en videojuegos, de modo que necesitaremos modelar bien la idea de lo que queremos hacer y aplicarle los conceptos de aprendizaje por refuerzo como pueden ser agentes, entorno, recompensa, funciones de valor y procesos de decision de Markov.
+Estructura de training en python
+Para este proyecto usare dos clases que seran agentes las de presa y depredador, un entorno simulado basado en matrices y un archivo de entrenamiento en python.
+[Espacio para colocar capturas]
+Estructura de uso de Q-Tables para IA en Unreal Engine 5.
+Para el uso de las Q-Tables generadas usare ademas Unreal Engine donde podremos ver el comportamiento de IA basada en estas Q-Tables.
+[Espacio para colocar capturas]
 
 	
+
+Abreviatura	Variable	Significado	Valores
+rs	resource_level	Nivel de cercanía al recurso	0=lejano/ninguno, 1=medio, 2=adyacente
+rd	resource_dir	Dirección del recurso	0=ninguna, 1=arriba, 2=abajo, 3=izquierda, 4=derecha
+hs	hunger	Nivel de hambre	0=satisfecho, 1=hambriento, 2=crítico
+rr	mate_near	Posible pareja cerca	0=no, 1=sí
+prs	predator_level	Cercanía del depredador	0=lejano/ninguno, 1=medio, 2=peligro
+pd	predator_dir	Dirección del depredador	0=ninguna, 1=arriba, 2=abajo, 3=izquierda, 4=derecha
+
+
+
+Abreviatura	Variable	Significado	Valores
+pres	prey_level	Cercanía de la presa	0=lejana/ninguna, 1=media, 2=adyacente
+prey_dir	prey_dir	Dirección de la presa	0=ninguna, 1=arriba, 2=abajo, 3=izquierda, 4=derecha
+hs	hunger	Nivel de hambre	0=satisfecho, 1=hambriento, 2=hambriento crítico
+rr	mate_near	Pareja cerca	0=no, 1=sí
+
+
+
+Mejoras
+
+- Implementar clase Dios que monitoree las poblaciones y pueda modificar el entorno para asegurar la supervivencia usando metodos de Lluvia() o metodos como Sequia() que reduce la generacion de recursos.
+
+
+	
+- Asignar asset para nubes con lluvia
+- Asignar asset para sol fuerte
+
+
+1 PARTE 
+- Asignar asset a ambiente y colocar vegetacion
+- Asignar animacion con movimientos de mini saltos para las presas
+- Fix animacion de giro de agentes depredadores
+2 PARTE
+- Remover playerController y PlayerInstance para que sea solo la camara el jugador y permita inputs.
+- Implementar input para ver metricas, con teclas
+	P   Presas
+	D   Depredadores
+	TAB Poblaciones
+	M   Decisiones de clase Dios
+3 PARTE 
+- IMPLEMENTAR INTERFACES AL INICIO 

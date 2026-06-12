@@ -21,10 +21,10 @@ public:
     FIntPoint GridPos;
 
     UPROPERTY(EditAnywhere, Category = "State")
-    int32 Hambre = 100;
+    int32 Hambre = 200;
 
     UPROPERTY(EditAnywhere, Category = "State")
-    int32 MaxHambre = 100;
+    int32 MaxHambre = 200;
 
     UPROPERTY(VisibleAnywhere, Category = "State")
     bool bAlive = true;

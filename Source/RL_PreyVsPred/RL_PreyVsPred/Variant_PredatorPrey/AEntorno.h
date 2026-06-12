@@ -65,6 +65,12 @@ public:
     TArray<FIntPoint> ResourcePositions;
     TArray<ARecurso*> ResourceMeshes;
 
+    UPROPERTY(VisibleAnywhere, Category = "Stats")
+    int32 TotalPreyReproductions = 0;
+
+    UPROPERTY(VisibleAnywhere, Category = "Stats")
+    int32 TotalPredatorReproductions = 0;
+
     void InitializeSimulation();
     void ResetSimulation();
     void Step();

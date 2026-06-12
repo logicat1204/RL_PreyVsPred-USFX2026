@@ -155,6 +155,8 @@ void AEntorno::ResetSimulation()
     Predators.Empty();
     ResourcePositions.Empty();
     ResourceMeshes.Empty();
+    TotalPreyReproductions = 0;
+    TotalPredatorReproductions = 0;
 }
 
 void AEntorno::Step()
@@ -493,6 +495,7 @@ void AEntorno::TryReproducePrey(APresa* Parent)
             Child->ReproCooldown = 10;
             Child->StepsHambreCero = 0;
             Preys.Add(Child);
+            TotalPreyReproductions++;
         }
     }
 
@@ -544,6 +547,7 @@ void AEntorno::TryReproducePredator(APredator* Parent)
             Child->ReproCooldown = 10;
             Child->StepsHambreCero = 0;
             Predators.Add(Child);
+            TotalPredatorReproductions++;
         }
     }
 
