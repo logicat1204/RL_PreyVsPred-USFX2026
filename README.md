@@ -49,7 +49,7 @@ El proceso de entrenamiento se realiza de forma aislada en un script de Python o
 ### 📸 Proceso de Simulación y Gráficas de Aprendizaje
 *A continuación se presentan las capturas correspondientes al proceso de entrenamiento, convergencia de recompensas y pérdidas a lo largo de los episodios.*
 
-```text
+```
 +-----------------------------------------------------------------+
 |                                                                 |
 |    
